@@ -1,0 +1,20 @@
+# Python virtual environments
+env_detect/
+env_extract/
+env_metrics/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Data files (don't upload thousands of images)
+data/1_raw_images/
+data/2_aligned_faces/
+data/3_embeddings/
+data/4_database/
+data/test_pairs.csv
+data/test_results.npy
+
+# IDE files
+.idea/
+.vscode/
