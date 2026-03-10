@@ -31,7 +31,7 @@ This project uses three separate Python virtual environments to resolve dependen
 ### 2. Clone the Repository
 ```bash
 git clone https://github.com/NafiS2/TSSOASSBATMAN.git
-cd 
+cd TSSOASSBATMAN
 ```
 
 **Note:** The first time you run this script, it will take several minutes to download all the datasets and pre-trained models. The face detection step on 2000 images is computationally intensive and may take 5-10 minutes.
@@ -46,65 +46,65 @@ This project is modular, meaning you execute each stage of the pipeline independ
 
 This script downloads the LFW dataset and generates the test instruction file (test_pairs.csv).
 
-
+```bash
 python -m venv env_metrics
 .\env_metrics\Scripts\activate
 pip install -r requirements_metrics.txt
 python 00_download_dataset.py
 deactivate
-
+```
 
 
 **Step 1: Detect and Align
 
 This script processes the raw images to detect faces, perform eye-alignment, and save the cropped output.
 
-
+```bash
 python -m venv env_detect
 .\env_detect\Scripts\activate
 pip install -r requirements_detect.txt
 python 01_detect_and_align.py
 deactivate
-
+```
 
 **Step 2: Extract Embeddings
 
 This script converts the aligned faces into 512-dimensional vector embeddings using the ArcFace model.
 
 
-
+```bash
 python -m venv env_extract
 .\env_extract\Scripts\activate
 pip install -r requirements_extract.txt
 python 02_extract_embeddings.py
 deactivate
-
+```
 
 **Step 3: Build Vector Database
 
 This step compiles the extracted embeddings into a searchable FAISS index.
 
-
+```bash
 .\env_metrics\Scripts\activate
 python 03_build_vector_db.py
-
+```
 
 **Step 4: Run Similarity Tests
 
 This script reads test_pairs.csv and calculates the cosine similarity for every pair, outputting the results into test_results.npy.
 
-
+```bash
 python 04_test_similarity.py
-
+```
 
 **Step 5: Evaluate Metrics
 
 This final step reads the similarity scores, performs statistical calibration, calculates the Equal Error Rate (EER), and generates the ROC Curve.
 
-
+```bash
 python 05_evaluate_metrics.py
 deactivate
-
+```
 
 ## Project Structure
 ```
