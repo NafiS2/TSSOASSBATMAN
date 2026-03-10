@@ -42,7 +42,7 @@ cd TSSOASSBATMAN
 This project is modular, meaning you execute each stage of the pipeline independently using its own isolated Python environment. This ensures dependency stability and allows you to audit each step of the data flow.
 
 
-**Step 0: Download and Prepare Dataset
+**Step 0: Download and Prepare Dataset**
 
 This script downloads the LFW dataset and generates the test instruction file (test_pairs.csv).
 
@@ -55,7 +55,7 @@ deactivate
 ```
 
 
-**Step 1: Detect and Align
+**Step 1: Detect and Align**
 
 This script processes the raw images to detect faces, perform eye-alignment, and save the cropped output.
 
@@ -67,7 +67,7 @@ python 01_detect_and_align.py
 deactivate
 ```
 
-**Step 2: Extract Embeddings
+**Step 2: Extract Embeddings**
 
 This script converts the aligned faces into 512-dimensional vector embeddings using the ArcFace model.
 
@@ -80,7 +80,7 @@ python 02_extract_embeddings.py
 deactivate
 ```
 
-**Step 3: Build Vector Database
+**Step 3: Build Vector Database**
 
 This step compiles the extracted embeddings into a searchable FAISS index.
 
@@ -89,7 +89,7 @@ This step compiles the extracted embeddings into a searchable FAISS index.
 python 03_build_vector_db.py
 ```
 
-**Step 4: Run Similarity Tests
+**Step 4: Run Similarity Tests**
 
 This script reads test_pairs.csv and calculates the cosine similarity for every pair, outputting the results into test_results.npy.
 
@@ -97,7 +97,7 @@ This script reads test_pairs.csv and calculates the cosine similarity for every 
 python 04_test_similarity.py
 ```
 
-**Step 5: Evaluate Metrics
+**Step 5: Evaluate Metrics**
 
 This final step reads the similarity scores, performs statistical calibration, calculates the Equal Error Rate (EER), and generates the ROC Curve.
 
